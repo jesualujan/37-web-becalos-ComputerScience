@@ -82,4 +82,18 @@ const alumnos = {
     }
 }
 
+// implementar el buscador 
+// seleccionar el elemento de mi html y le paso un evento, es una función que buscará
+// a un objeto de tipo alumno, por su nombre
+document.getElementById('search').addEventListener('input', function getName(){
+    const filtro = this.value.toLowerCase();
+    const alumnosFiltrados = {};
+    for (const alumno of Object.values(alumnos)) {
+        if (alumno.nombre.toLowerCase().includes(filtro)) {
+            alumnosFiltrados[alumno.id] = alumno;
+        }
+    }
+    getStudents(alumnosFiltrados);
+});
+
 getStudents(alumnos);
