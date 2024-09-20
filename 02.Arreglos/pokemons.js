@@ -1,11 +1,21 @@
 // const pokemons = []; // tengo un arreglo vacío, es decir lo vamos a 
 
 // tenemos un arreglo de objetos 
+//* arreglo original
 const pokemons = [
     {nombrePokemon: 'Pikachu', tipoPokemon: 'Eléctrico',fuerzaPokemon: 55, vidaPokemon: 40},
     {nombrePokemon: 'Charmander', tipoPokemon: 'Fuego', fuerzaPokemon:52, vidaPokemon: 39},
     {nombrePokemon: 'Bulbasaur', tipoPokemon: 'Hoja', fuerzaPokemon:49, vidaPokemon: 45},
     {nombrePokemon: 'Squirtle', tipoPokemon: 'Agua', fuerzaPokemon:48, vidaPokemon: 44},
+];
+
+//* nuevo arreglo 
+// Nuevo arreglo de evoluciones de Pokémon
+const pokemonsEvolutions = [
+    { nombrePokemon: 'Pikachu', pokemonEvolution: 'Raichu' },
+    { nombrePokemon: 'Charmander', pokemonEvolution: 'Charmeleon' },
+    { nombrePokemon: 'Bulbasaur', pokemonEvolution: 'Ivysaur' },
+    { nombrePokemon: 'Squirtle', pokemonEvolution: 'Wartortle' }
 ];
 
 pokemons.push({
@@ -69,12 +79,28 @@ function setNewPokemon(nombre, tipo, fuerza, vida) {
     )
 }
 
+// Función para combinar ambos arreglos y mostrar nombre, evolución y tipo
+function getPokemonsEvolution() {
+    return pokemons.map(pokemon => {
+        const evolucion = pokemonsEvolutions.find(evo => evo.nombrePokemon === pokemon.nombrePokemon);
+        return {
+            nombrePokemon: pokemon.nombrePokemon,
+            pokemonEvolution: evolucion ? evolucion.pokemonEvolution : 'No tiene evolución',
+            tipoPokemon: pokemon.tipoPokemon
+        };
+    });
+}
+
+
 //Agregamos más pokémons de tipo electrico y fuego
-setNewPokemon('Magmar', 'Fuego', 65, 80);
+setNewPokemon('Electabuzz', 'Eléctrico', 65, 65);
 setNewPokemon('Jolteon', 'Eléctrico', 65, 65);
-setNewPokemon('Electabuzz', 'Eléctrico', 55, 75);
+setNewPokemon('Magmar', 'Fuego', 65, 65);
+setNewPokemon('Flareon', 'Fuego', 65, 65);
 
 console.log(pokemons);
 console.log(`La cantidad de elementos del arreglo pokemons es de: ${pokemons.length}`);
 console.log('Lista de pokemons por (nombre y tipo)', getPokemonsList());
-console.log('Pokemons de tipo Eléctrico', getFilteredPokemons().length)
+console.log('Pokemons de tipo Eléctrico', getFilteredPokemons(), 
+            '\n Pokemons de tipo Eléctrico', getFilteredPokemons().length );
+console.log('Lista combinada de Pokémon y sus evoluciones:', getPokemonsEvolution());
